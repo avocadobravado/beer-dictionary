@@ -7,6 +7,18 @@ $(document).ready(function() {
 
   $('#current-time').text(moment().format("h:mm A"));
 
+  $('.hours').on('keyup', function() {
+    hours = this.value;
+    hours = parseInt(hours);
+    console.log(hours);
+  });
+
+  $('.minutes').on('keyup', function() {
+    minutes = this.value;
+    minutes = parseInt(minutes);
+    console.log(minutes);
+  });
+
   $('.minus-hours').click(function(e) {
     e.preventDefault();
     if (hours > 1) {
@@ -29,10 +41,18 @@ $(document).ready(function() {
 
   //minutes
 
+
+
     $('.minus-minutes').click(function(e) {
       e.preventDefault();
-      if (minutes > 0) {
+      if (minutes == 0) {
+        minutes = 59;
+        $('.minutes').val(minutes)
+
+
+      } else if (minutes > 0) {
         minutes -= 1;
+        moment(minutes).format("mm");
         $('.minutes').val(minutes);
       } else {
         minutes = minutes;
@@ -41,7 +61,11 @@ $(document).ready(function() {
 
     $('.add-minutes').click(function(e) {
       e.preventDefault();
-      if (minutes <= 59) {
+      if (minutes == 59){
+        minutes = 00;
+        $('.minutes').val(minutes);
+      }
+      else if (minutes < 59) {
         minutes += 1;
         $('.minutes').val(minutes);
       } else {
