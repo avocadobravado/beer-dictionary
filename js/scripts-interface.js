@@ -1,32 +1,33 @@
 var ExampleModule = require('./../js/scripts.js').exampleModule;
 
-
 $(document).ready(function() {
   var hours = parseInt($('.hours').val());
   var minutes = parseInt($('.minutes').val());
 
-  $('#current-time').text(moment().format("h:mm A"));
+  var now = $('#current-time').text(moment());
+
+
+  console.log(now);
 
   $('.hours').on('keyup', function() {
     hours = this.value;
     hours = parseInt(hours);
-    console.log(hours);
   });
 
   $('.minutes').on('keyup', function() {
     minutes = this.value;
     minutes = parseInt(minutes);
-    console.log(minutes);
   });
 
   $('.minus-hours').click(function(e) {
     e.preventDefault();
-    if (hours > 1) {
+    if (hours > 0) {
       hours -= 1;
-      $('.hours').val(hours);
     } else {
       hours = hours;
     }
+    $('.hours').val(hours);
+    console.log(hours);
   });
 
   $('.add-hours').click(function(e) {
@@ -41,18 +42,19 @@ $(document).ready(function() {
 
   //minutes
 
-
-
     $('.minus-minutes').click(function(e) {
       e.preventDefault();
       if (minutes == 0) {
         minutes = 59;
         $('.minutes').val(minutes)
-
-
       } else if (minutes > 0) {
         minutes -= 1;
-        moment(minutes).format("mm");
+        if (minutes >= 0 && minutes <= 9) {
+          minutes = "0" + minutes;
+          console.log(minutes);
+        } else {
+          minutes = minutes;
+        }
         $('.minutes').val(minutes);
       } else {
         minutes = minutes;
@@ -61,17 +63,51 @@ $(document).ready(function() {
 
     $('.add-minutes').click(function(e) {
       e.preventDefault();
-      if (minutes == 59){
+      minutes = parseInt(minutes);
+      if (minutes == 59) {
         minutes = 00;
+        if (minutes == 0) {
+          minutes = "0" + minutes;
+        } else {
+          minutes = minutes;
+        }
         $('.minutes').val(minutes);
-      }
-      else if (minutes < 59) {
+      } else if (minutes < 59) {
         minutes += 1;
-        $('.minutes').val(minutes);
+        if (minutes >= 0 && minutes <= 9) {
+          minutes = "0" + minutes;
+          console.log(minutes);
+          $('.minutes').val(minutes);
+        } else {
+          minutes = minutes;
+          $('.minutes').val(minutes);
+        }
       } else {
         minutes = minutes;
       }
     });
 
-  console.log(exampleInstance.examplePrototype());
+    $(".alarm").submit(function(e){
+      e.preventDefault();
+      if (minutes == 0) {
+        minutes = "0" + minutes;
+      } else {
+        minutes = minutes;
+      }
+      // if ($('.onoffswitch-checkbox').is(':checked')) {
+        $(".alarm-display").text(hours + " hours and " + minutes + " minutes long");
+      // } else {
+      //   $(".alarm-display").text(hours + ":" + minutes + " AM");
+      // }
+      var b = moment().add(hours, 'h').add(minutes, 'm').format("h:mm A");
+      $(".alarm-set").text(b);
+    });
+
+
+    if (now == b) {
+      alert("yay alarm!!");
+    }
+
+
+  // console.log(exampleInstance.examplePrototype());
 });

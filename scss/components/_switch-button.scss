@@ -13,9 +13,18 @@
     display: block; width: 200%; margin-left: -100%;
     transition: margin 0.3s ease-in 0s;
 }
-.onoffswitch-inner:before, .onoffswitch-inner:after {
-    display: block; float: left; width: 50%; height: 42px; padding: 0; line-height: 42px;
-    font-size: 20px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+.onoffswitch-inner:before,
+.onoffswitch-inner:after {
+    display: block;
+    float: left;
+    width: 50%;
+    height: 42px;
+    padding: 0;
+    line-height: 42px;
+    font-size: 20px;
+    color: white;
+    font-family: Trebuchet, Arial, sans-serif;
+    font-weight: bold;
     box-sizing: border-box;
 }
 .onoffswitch-inner:before {
