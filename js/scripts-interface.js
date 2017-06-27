@@ -25,8 +25,29 @@ $(document).ready(function() {
     } else {
       hours = hours;
     }
-    console.log(hours);
   });
+
+  //minutes
+
+    $('.minus-minutes').click(function(e) {
+      e.preventDefault();
+      if (minutes > 0) {
+        minutes -= 1;
+        $('.minutes').val(minutes);
+      } else {
+        minutes = minutes;
+      }
+    });
+
+    $('.add-minutes').click(function(e) {
+      e.preventDefault();
+      if (minutes <= 59) {
+        minutes += 1;
+        $('.minutes').val(minutes);
+      } else {
+        minutes = minutes;
+      }
+    });
 
   console.log(exampleInstance.examplePrototype());
 });
