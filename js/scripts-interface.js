@@ -1,113 +1,47 @@
-var ExampleModule = require('./../js/scripts.js').exampleModule;
-
-$(document).ready(function() {
-  var hours = parseInt($('.hours').val());
-  var minutes = parseInt($('.minutes').val());
-
-  var now = $('#current-time').text(moment());
+var apiKey = require('./../.env').apiKey;
 
 
-  console.log(now);
-
-  $('.hours').on('keyup', function() {
-    hours = this.value;
-    hours = parseInt(hours);
-  });
-
-  $('.minutes').on('keyup', function() {
-    minutes = this.value;
-    minutes = parseInt(minutes);
-  });
-
-  $('.minus-hours').click(function(e) {
+$(function() {
+  $('.search-form').submit(function(e) {
     e.preventDefault();
-    if (hours > 0) {
-      hours -= 1;
-    } else {
-      hours = hours;
-    }
-    $('.hours').val(hours);
-    console.log(hours);
+
+    var searchInput = $('.search-input').val();
+    var organicResult;
+
+    $('.search-input').val('');
+
+    $.get("http://api.brewerydb.com/v2/beers/?name=" + searchInput + "&description&key=" + apiKey, function(response) {
+
+      // function organic() {
+      //   if (JSON.stringify(response.data[0].isOrganic) === true) {
+      //     organicResult = "Yes";
+      //   } else {
+      //     organicResult = "No";
+      //   }
+      // };
+
+      console.log(JSON.stringify(response));
+      $('.result').html(
+        "<h3>Drink searched: " + searchInput + "</h3><br>" +
+        "<ul><li><strong>ABV: </strong>" + (JSON.parse(response.data[0].abv)) + "%</li>" +
+        "<li><strong>IBU: </strong>" + (JSON.parse(response.data[0].ibu)) + "</li></ul>" +
+        // "<li><strong>Organic: </strong>" + organicResult + "</li>"
+        "<h3>Drink category: " + searchInput + "</h3><br>"
+
+        // (JSON.stringify(response.data[0].isOrganic)) + "</li></ul>"
+        // organic
+        // (JSON.stringify(response.data[0].style.description))
+        // + "<br>" +
+        // (JSON.stringify(response.data[0].style.id))
+
+      );
+    });
   });
-
-  $('.add-hours').click(function(e) {
-    e.preventDefault();
-    if (hours <= 11) {
-      hours += 1;
-      $('.hours').val(hours);
-    } else {
-      hours = hours;
-    }
-  });
-
-  //minutes
-
-    $('.minus-minutes').click(function(e) {
-      e.preventDefault();
-      if (minutes == 0) {
-        minutes = 59;
-        $('.minutes').val(minutes)
-      } else if (minutes > 0) {
-        minutes -= 1;
-        if (minutes >= 0 && minutes <= 9) {
-          minutes = "0" + minutes;
-          console.log(minutes);
-        } else {
-          minutes = minutes;
-        }
-        $('.minutes').val(minutes);
-      } else {
-        minutes = minutes;
-      }
-    });
-
-    $('.add-minutes').click(function(e) {
-      e.preventDefault();
-      minutes = parseInt(minutes);
-      if (minutes == 59) {
-        minutes = 00;
-        if (minutes == 0) {
-          minutes = "0" + minutes;
-        } else {
-          minutes = minutes;
-        }
-        $('.minutes').val(minutes);
-      } else if (minutes < 59) {
-        minutes += 1;
-        if (minutes >= 0 && minutes <= 9) {
-          minutes = "0" + minutes;
-          console.log(minutes);
-          $('.minutes').val(minutes);
-        } else {
-          minutes = minutes;
-          $('.minutes').val(minutes);
-        }
-      } else {
-        minutes = minutes;
-      }
-    });
-
-    $(".alarm").submit(function(e){
-      e.preventDefault();
-      if (minutes == 0) {
-        minutes = "0" + minutes;
-      } else {
-        minutes = minutes;
-      }
-      // if ($('.onoffswitch-checkbox').is(':checked')) {
-        $(".alarm-display").text(hours + " hours and " + minutes + " minutes long");
-      // } else {
-      //   $(".alarm-display").text(hours + ":" + minutes + " AM");
-      // }
-      var b = moment().add(hours, 'h').add(minutes, 'm').format("h:mm A");
-      $(".alarm-set").text(b);
-    });
-
-
-    if (now == b) {
-      alert("yay alarm!!");
-    }
-
-
-  // console.log(exampleInstance.examplePrototype());
 });
+
+// (JSON.parse(response.data[0].ibu))
+// "</li><br><li><strong>Organic: </strong>" +
+// (JSON.parse(response.data[0].isOrganic))
+// (JSON.parse(response.data[0].style.description))
+// + "<br>" +
+// (JSON.stringify(response.data[0].style.id))
