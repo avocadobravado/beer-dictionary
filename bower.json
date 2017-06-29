@@ -3,7 +3,7 @@
   "description": "Yelp API fun stuff",
   "main": "index.js",
   "license": "ISC",
-  "homepage": "",
+  "homepage": "https://github.com/avocadobravado/beer-dictionary",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -13,5 +13,8 @@
   ],
   "dependencies": {
     "jquery": "^3.2.1"
-  }
+  },
+  "authors": [
+    "Rose Sponseller <rosesponseller@gmail.com>"
+  ]
 }
