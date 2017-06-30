@@ -6,13 +6,13 @@
 
 ### Description
 
-Built with a mobile-first approach, this website uses the Brewery DB API to allow users to search for thousands of beers and learn more about different beers.
+Built with a mobile-first approach, this website uses the Brewery DB (https://www.brewerydb.com) API to allow users to search for thousands of beers and learn more about them. The website searches will return the ABV (Alcohol by Volume) IBU (International Bitterness Units) of the searched beer and a description of the beer's category.
 
 ### Screenshot of website
 
 ![screenshot of project](https://github.com/avocadobravado/beer-dictionary/blob/master/img/scs.png?raw=true)
 
-### Setup/Installation
+### Installation
 
 1) Open your terminal and clone this repository by typing:
 
@@ -23,13 +23,12 @@ $ git clone https://github.com/avocadobravado/beer-dictionary
 2) Move into the cloned repository by typing:
 
 ```
-$ cd dir/beer-dictionary
+$ cd beer-dictionary
 ```
 
-3) In the top level of the project's directory, create two hidden files -- an .env file for your API key and a .gitignore file
+3) In the top level of the project's directory, create a hidden file for your API key
 
 ```
-$ beer-dictionary/touch .gitignore
 $ beer-dictionary/touch .env
 ```
 
@@ -82,6 +81,12 @@ $ gulp build
 $ gulp serve
 ```
 
+11) Step 10 should immediately open up a web browser such as Google Chrome and take you to the site, but if not, visit the following address in your preferred browser:
+
+```
+localhost:3000
+```
+
 ## Built With
 
 * HTML
@@ -90,10 +95,11 @@ $ gulp serve
 * Brewery DB API
 * JavaScript
 * jQuery
+* Sketch
 
 ## Known Bugs
 
-* Unknown, but let us know
+* Nothing will display if there is no match to what the user has inputted
 
 ## Support and contact details
 
