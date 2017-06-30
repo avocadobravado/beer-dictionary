@@ -51,7 +51,7 @@ exports.beerModule = Beer;
 var Beer = require('./../js/scripts.js').beerModule;
 
 var name = function(name) {
-  $('.result').before("<p><strong>Name: " + name + "</strong></p>");
+  $('.result').before("<h3>Name: " + name + "</h3>");
 };
 
 var abv = function(abv) {
@@ -63,15 +63,15 @@ var ibu = function(ibu) {
 };
 
 var organic = function(organic) {
-  $('.result').before("<p><strong>Organic: </strong>" + organic + "</p>");
+  $('.result').before("<p><strong>Organic:</strong> " + organic + "</p>");
 };
 
 var category = function(category) {
-  $('.result').before("<h3>Drink category: " + category + "</h3><br>");
+  $('.result').before("<h3>Category: " + category + "</h3><br>");
 };
 
 var description = function(description) {
-  $('.result').before("<p><strong>Description:</strong></p><p>" + description + "</p>");
+  $('.result').before("<h3>Description:</h3><p>" + description + "</h3>");
 };
 
 var abvMin = function(abvMin) {
@@ -90,7 +90,6 @@ $(function() {
   $('.search-form').submit(function(e) {
     e.preventDefault();
     searchInput = $('.search-input').val();
-    $('.search-input').val('');
 
     newBeer.getAbv(searchInput, name, abv, ibu, organic, category, description);
     console.log(searchInput);

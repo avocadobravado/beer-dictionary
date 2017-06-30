@@ -1,7 +1,9 @@
 body {
   font-family: 'EB Garamond', serif;
 }
-
+p {
+  font-size: 19px;
+}
 h1 {
   font-family: 'Oswald', sans-serif;
   font-size: 2.5em;
@@ -13,6 +15,8 @@ h1 {
 
 h3 {
   font-family: 'Open Sans Condensed', sans-serif;
+  margin: 0;
+  color: #29213f;
 }
 
 .content-wrapper {
@@ -25,4 +29,13 @@ h3 {
 label {
   font-family: 'Open Sans Condensed';
   font-size: 2em;
+}
+
+strong {
+  color: #29213f;
+}
+
+::selection {
+    color: whitesmoke;
+    background: #29213f;
 }
