@@ -35,7 +35,7 @@ $ beer-dictionary/touch .env
 4) Create an account with Brewery DB to retrieve your own free API key
 
 ```
-visit http://www.brewerydb.com/developers
+http://www.brewerydb.com/developers
 ```
 
 5) Add the API key to your .env file:
